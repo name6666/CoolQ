@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="org.sct.icestar">
+    <output-path>D:/Program Files (x86)/酷Q Air/data/app/com.sobte.cqp.jcq/app</output-path>
+    <root id="archive" name="org.sct.icestar.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="CoolQ" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/sobte/cqp/jcq-coolq/1.2.7/jcq-coolq-1.2.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/alibaba/fastjson/1.2.61/fastjson-1.2.61.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
