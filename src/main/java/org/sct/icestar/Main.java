@@ -3,11 +3,15 @@ package org.sct.icestar;
 import com.sobte.cqp.jcq.entity.*;
 import com.sobte.cqp.jcq.event.JcqAppAbstract;
 import org.sct.icestar.data.BotData;
+import org.sct.icestar.enumeration.PathType;
+import org.sct.icestar.manager.FIleManager;
 import org.sct.icestar.manager.ListenerManager;
+
+import java.io.IOException;
 
 public class Main extends JcqAppAbstract implements ICQVer, IMsg, IRequest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         CQ = new CQDebug();
         Main bot = new Main();
         bot.startup();
@@ -24,9 +28,6 @@ public class Main extends JcqAppAbstract implements ICQVer, IMsg, IRequest {
     @Override
     public int groupMsg(int subType, int msgId, long fromGroup, long fromQQ, String fromAnonymous, String msg, int font) {
 
-        if (BotData.getListeners().size() == 0) {
-            ListenerManager.registerListener();
-        }
 
         ListenerManager.callEvent(fromGroup, fromQQ, msg);
         return MSG_IGNORE;
@@ -105,6 +106,18 @@ public class Main extends JcqAppAbstract implements ICQVer, IMsg, IRequest {
     @Override
     public int enable() {
         enable = true;
+
+        /*注册监听器*/
+        if (BotData.getListeners().size() == 0) {
+            ListenerManager.registerListener();
+        }
+
+        /*创建目录*/
+        try {
+            FIleManager.createFolder();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 

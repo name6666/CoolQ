@@ -1,19 +1,23 @@
 package org.sct.icestar.listener;
 
 import org.sct.icestar.Main;
+import org.sct.icestar.data.BotData;
+import org.sct.icestar.enumeration.PathType;
+import org.sct.icestar.util.GetText;
+import org.sct.icestar.util.JudgeEnable;
 import org.sct.icestar.util.Listener;
 import org.sct.icestar.util.GetUID;
+
+import java.io.IOException;
 
 public class MuteListener implements Listener {
 
     @Override
-    public boolean execute(long fromGroup, long fromQQ, String msg) {
+    public boolean execute(long fromGroup, long fromQQ, String msg) throws IOException {
 
-        if (fromGroup != 343234268 && fromGroup != 895578145) {
-            return false;
-        }
-
-
+       if (!JudgeEnable.judegeEnable(fromGroup, fromQQ, "mute")) {
+           return false;
+       }
 
         /*格式:/mute qq号 时间*/
         String[] strings = null;

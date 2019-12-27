@@ -2,13 +2,16 @@ package org.sct.icestar.listener;
 
 import org.sct.icestar.Main;
 import org.sct.icestar.data.BotData;
+import org.sct.icestar.util.JudgeEnable;
 import org.sct.icestar.util.Listener;
+
+import java.io.IOException;
 
 public class RepeatListener implements Listener {
     @Override
-    public boolean execute(long fromGroup, long fromQQ, String msg) {
+    public boolean execute(long fromGroup, long fromQQ, String msg) throws IOException {
 
-        if (fromGroup != 343234268) {
+        if (!JudgeEnable.judegeEnable(fromGroup, fromQQ, "runcommand")) {
             return false;
         }
 

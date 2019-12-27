@@ -10,7 +10,8 @@ public class ListenerManager {
 
     public static void registerListener() {
         Listener[] listeners = {new MuteListener(), new RepeatListener(), new ShowDocListener(),
-                new RunServerCommandListener(), new SpyModeListener(), new BilibiliListener()};
+                new RunServerCommandListener(), new SpyModeListener(), new BilibiliListener(),
+        new ShowPlayerListListener()};
         for (Listener listener : listeners) {
             BotData.getListeners().add(listener);
         }

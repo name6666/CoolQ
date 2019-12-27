@@ -13,18 +13,14 @@ import java.net.Socket;
 import java.util.Base64;
 import java.util.Scanner;
 
-public class RunServerCommandListener implements Listener {
-
+public class ShowPlayerListListener implements Listener {
     @Override
     public boolean execute(long fromGroup, long fromQQ, String msg) throws IOException {
-
-        if (!JudgeEnable.judegeEnable(fromGroup, fromQQ, "runcommand")) {
+        if (!JudgeEnable.judegeEnable(fromGroup, fromQQ, "playerlist")) {
             return false;
         }
 
-        if (msg.contains("/runservercommand")) {
-
-            /*新建线程*/
+        if (msg.equals("/showplayerlist")) {
             BotData.getPool().submit(() -> {
                 try {
                     Socket socket = new Socket("127.0.0.1", 1234);
@@ -39,24 +35,20 @@ public class RunServerCommandListener implements Listener {
                     Scanner scanner = new Scanner(inputStream);
                     while (scanner.hasNextLine()) {
                         String response = scanner.nextLine();
-                        Main.CQ.sendPrivateMsg(fromQQ, response);
+                        Main.CQ.sendGroupMsg(fromGroup, response.replace("*", "\n"));
 
                         /*断开连接*/
                         writer.println("IWNsb3NlIQ==");
                         writer.flush();
                     }
+
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
-
-
         }
-
-
 
         return true;
     }
-
-
 }

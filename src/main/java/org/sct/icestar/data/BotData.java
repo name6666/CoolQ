@@ -39,4 +39,7 @@ public class BotData {
 
     /*线程池*/
     @Getter private static ExecutorService pool;
+
+    /*使用机器人的群聊*/
+    @Getter private static long[] groups = {895578145, 659124576, 558529644, 343234268, 659124576};
 }
